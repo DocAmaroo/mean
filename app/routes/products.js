@@ -3,17 +3,16 @@
  * @param {*} app 
  * @param {*} db 
  */
-module.exports = function (app, db) {
-    app.get('/produits', (req, res) => {
-        console.log('/produits');
+exports.getProducts = function (app, db) {
+    app.get('/products', (req, res) => {
         try {
-            db.collection("produits")
+            db.collection("products")
             .find()
             .toArray( (err, documents) => {
                 res.json(documents);
             });
         } catch (e) {
-            console.log('Erreur sur /produits: ' + e);
+            console.log("[-]Error on /products: query didn't work properly\n" + e);
             res.json([]);
         }
     })
@@ -24,18 +23,17 @@ module.exports = function (app, db) {
  * @param {*} app 
  * @param {*} db 
  */
-module.exports = function (app, db) {
-    app.get("/produits/:categorie", (req, res) => {
+exports.getProductsFilter = function (app, db) {
+    app.get("/products/:categorie", (req, res) => {
         let categorie = req.params.categorie;
-        console.log("/produits/" + categorie);
         try {
-            db.collection("produits").find({
+            db.collection("products").find({
                 type: categorie
             }).toArray((err, documents) => {
                 res.json(documents);
             });
         } catch (e) {
-            console.log("Erreur sur /produits/" + categorie + " : " + e);
+            console.log("[-]Error on /products/" + categorie + ": query didn't work properly\n" + e);
             res.json([]);
         }
     });

@@ -28,5 +28,5 @@ MongoClient.connect(db.url, { useNewUrlParser: true, useUnifiedTopology: true },
 
 
 app.listen(port, () => {
-    console.log("server listening on: " + port);
+    console.log("[+]Server listening on: " + port);
 });
