@@ -3,10 +3,11 @@
 sudo systemctl start mongod
 ```
 
-# Package
+# Packages
 ```bash
 npm install nodemon express mongodb cors
 ```
+
 # Lancement du serveur NodeJS
 ```bash
 npm run dev
