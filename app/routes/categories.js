@@ -17,7 +17,7 @@ module.exports = function(app, db) {
                 }
             );
         } catch (e) {
-            console.log("Erreur sur /categories : " + e);
+            console.log("[-]Error on /categories: query didn't work properly\n" + e);
             res.json([]);
         }
     });
