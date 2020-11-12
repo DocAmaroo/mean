@@ -7,7 +7,7 @@ module.exports = function(app, db) {
     app.get("/categories", (req, res) => {
         categories = [];
         try {
-            db.collection("produits")
+            db.collection("products")
                 .find()
                 .toArray((err, documents) => {
                     for (let doc of documents) {

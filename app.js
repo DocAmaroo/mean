@@ -1,11 +1,14 @@
-// express
+//ENVIRONNEMENT
+require('dotenv/config');
+
+// EXPRESS
 const express = require('express');
 const app = express();
-const port = 8888;
+const routes = require('./app/routes');
 
+app.use(routes);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
@@ -13,20 +16,15 @@ app.use(function (req, res, next) {
     next();
 });
 
-// mongodb
-const MongoClient = require('mongodb').MongoClient;
-const db = require('./config/db');
-
-MongoClient.connect(db.url, { useNewUrlParser: true, useUnifiedTopology: true }, (err, database) => {
-    
-    let db = database.db("SUPERVENTES");
-    
+// DATABASE
+const mongoose = require('mongoose');
+mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true }, (err, database) => {
     if (err) return console.log(err);
-
-    require('./app/routes')(app, db);
+    else console.log("[+]Connect to DB!"); 
 });
+mongoose.Promise = global.Promise;
 
-
-app.listen(port, () => {
-    console.log("[+]Server listening on: " + port);
+// LISTENING
+app.listen(process.env.PORT, () => {
+    console.log("[+]Server listening on: " + process.env.PORT);
 });
