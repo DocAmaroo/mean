@@ -4,6 +4,7 @@
  * @param {*} db 
  */
 exports.getProducts = function (app, db) {
+    console.log("/products");
     app.get('/products', (req, res) => {
         try {
             db.collection("products")
