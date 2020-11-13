@@ -3,14 +3,14 @@ const Schema = mongoose.Schema;
 
 //create product Schema
 const ProductSchema = new Schema({
-    nom: {
+    name: {
         type: String,
         required: [true, 'Name field is required']
     },
     type: {
         type: String
     },
-    prix: {
+    price: {
         type: Number,
         default: 0.00
     },

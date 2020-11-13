@@ -1,12 +1,11 @@
-//ENVIRONNEMENT
+//--- ENV
 require('dotenv/config');
 
-// EXPRESS
+//--- EXPRESS
 const express = require('express');
 const app = express();
 const routes = require('./app/routes');
 
-app.use(routes);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(function (req, res, next) {
@@ -16,7 +15,10 @@ app.use(function (req, res, next) {
     next();
 });
 
-// DATABASE
+//--- ROUTES
+app.use(routes);
+
+//--- DATABASE
 const mongoose = require('mongoose');
 mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true }, (err, database) => {
     if (err) return console.log(err);
@@ -24,7 +26,7 @@ mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedT
 });
 mongoose.Promise = global.Promise;
 
-// LISTENING
+//--- LISTENING
 app.listen(process.env.PORT, () => {
     console.log("[+]Server listening on: " + process.env.PORT);
 });

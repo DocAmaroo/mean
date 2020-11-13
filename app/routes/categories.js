@@ -1,24 +1,25 @@
+const express = require('express');
+const router = express.Router();
+const categoriesModels = require('../models/productsModels');
+
 /**
  * Liste des catégories de produits
- * @param {*} app 
- * @param {*} db 
  */
-module.exports = function(app, db) {
-    app.get("/categories", (req, res) => {
-        categories = [];
-        try {
-            db.collection("products")
-                .find()
-                .toArray((err, documents) => {
-                    for (let doc of documents) {
-                        if (!categories.includes(doc.type)) categories.push(doc.type);
-                    }
-                    res.json(categories);
+router.get("/categories", (req, res) => {
+    result = [];
+    try {
+        categoriesModels.find()
+            .then(function(categories) {
+                for (let categorie of categories) {
+                    if (!result.includes(categorie.type)) 
+                        result.push(categorie.type);
                 }
-            );
-        } catch (e) {
-            console.log("[-]Error on /categories: query didn't work properly\n" + e);
-            res.json([]);
-        }
-    });
-}
+                res.json(result);
+            });
+    } catch (e) {
+        console.log("[-]Error on /categories: query didn't work properly\n" + e);
+        res.json([]);
+    }
+});
+
+module.exports = router;

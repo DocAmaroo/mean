@@ -5,7 +5,7 @@ sudo systemctl start mongod
 
 # Packages
 ```bash
-npm install nodemon express mongoose cors
+npm install nodemon express mongoose cors body-parser
 ```
 
 # Lancement du serveur NodeJS

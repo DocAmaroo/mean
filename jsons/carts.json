@@ -1,24 +1,24 @@
 [{ 
-    "idmember": 1,
+    "idmember": "1",
     "cart": 
         [
-            {"nom":"Caféine", "type":"anti-fatigue", "prix":15, "marque":"marque1", "quantity": 1},
-            {"nom":"Curcumine", "type":"anti-oxydant", "prix":30, "marque":"marque1", "quantity": 1}
+            {"name":"Caféine", "type":"anti-fatigue", "price":15, "marque":"marque1", "quantity": 1},
+            {"name":"Curcumine", "type":"anti-oxydant", "price":30, "marque":"marque1", "quantity": 1}
         ]
 }, {
-    "idmember": 2,
+    "idmember": "2",
     "cart": 
         [
-            {"nom":"Quercétine", "type":"anti-oxydant", "prix":50, "marque":"marque2", "quantity": 2},
-            {"nom":"Resvératrol", "type":"anti-oxydant", "prix":45, "marque":"marque2", "quantity": 1}
+            {"name":"Quercétine", "type":"anti-oxydant", "price":50, "marque":"marque2", "quantity": 2},
+            {"name":"Resvératrol", "type":"anti-oxydant", "price":45, "marque":"marque2", "quantity": 1}
         ]
 }, {
-    "idmember": 3,
+    "idmember": "3",
     "cart": 
         [
-            {"nom":"Caféine", "type":"anti-fatigue", "prix":15, "marque":"marque1", "quantity": 1},
-            {"nom":"Curcumine", "type":"anti-oxydant", "prix":30, "marque":"marque1", "quantity": 2},
-            {"nom":"Quercétine", "type":"anti-oxydant", "prix":50, "marque":"marque2", "quantity": 1},
-            {"nom":"Resvératrol", "type":"anti-oxydant", "prix":45, "marque":"marque2", "quantity": 2}
+            {"name":"Caféine", "type":"anti-fatigue", "price":15, "marque":"marque1", "quantity": 1},
+            {"name":"Curcumine", "type":"anti-oxydant", "price":30, "marque":"marque1", "quantity": 2},
+            {"name":"Quercétine", "type":"anti-oxydant", "price":50, "marque":"marque2", "quantity": 1},
+            {"name":"Resvératrol", "type":"anti-oxydant", "price":45, "marque":"marque2", "quantity": 2}
         ]
 }]

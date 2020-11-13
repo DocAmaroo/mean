@@ -1,7 +1,7 @@
 [
-    {"nom":"Caféine", "type":"anti-fatigue", "prix":15, "marque":"marque1"},
-    {"nom":"Curcumine", "type":"anti-oxydant", "prix":30, "marque":"marque1"},
-    {"nom":"Quercétine", "type":"anti-oxydant", "prix":50, "marque":"marque2"},
-    {"nom":"Resvératrol", "type":"anti-oxydant", "prix":45, "marque":"marque2"},
-    {"nom":"Rhodiola rosea", "type":"anti-fatigue", "prix":25, "marque":"marque2"}
+    {"name":"Caféine", "type":"anti-fatigue", "price":15, "marque":"marque1"},
+    {"name":"Curcumine", "type":"anti-oxydant", "price":30, "marque":"marque1"},
+    {"name":"Quercétine", "type":"anti-oxydant", "price":50, "marque":"marque2"},
+    {"name":"Resvératrol", "type":"anti-oxydant", "price":45, "marque":"marque2"},
+    {"name":"Rhodiola rosea", "type":"anti-fatigue", "price":25, "marque":"marque2"}
 ]

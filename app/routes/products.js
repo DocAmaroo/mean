@@ -1,12 +1,9 @@
 const express = require('express');
-const productModels = require('../models/productsModels');
 const router = express.Router();
 const productsModels = require('../models/productsModels');
 
 /**
  * Liste des produits
- * @param {*} app 
- * @param {*} db 
  */
 router.get('/products', (req, res) => {
     try {
@@ -20,21 +17,20 @@ router.get('/products', (req, res) => {
     }
 });
 
+
 /**
- * Liste des produits suivant une catégorie
- * @param {*} app 
- * @param {*} db 
+ * Liste des produits filtrés par une catégorie
  */
-router.get("/products/:categorie", (req, res) => {
-    let categorie = req.params.categorie;
+router.get("/products/:type", (req, res) => {
+    let type = req.params.type;
     try {
-        productModels.find({
-            type: categorie
+        productsModels.find({
+            type: type
         }).then(function(products) {
             res.json(products)
         });
     } catch (e) {
-        console.log("[-]Error on /products/" + categorie + ": query didn't work properly\n" + e);
+        console.log("[-]Error on /products/" + type + ": query didn't work properly\n" + e);
         res.json([]);
     }
 });

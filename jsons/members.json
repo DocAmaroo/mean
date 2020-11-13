@@ -1,19 +1,16 @@
 [{
-    "id": 1,
-    "nom": "Delune",
-    "prénom": "Claire",
-    "email": "claire.delune@mailserver.fr",
+    "name": "Delune",
+    "firstname": "Claire",
+    "mail": "claire.delune@mailserver.fr",
     "password": "123456"
 }, {
-    "id": 2,
-    "nom": "Nett",
-    "prénom": "Jessica",
-    "email": "jessica.nett@mailserver.fr",
+    "name": "Nett",
+    "firstname": "Jessica",
+    "mail": "jessica.nett@mailserver.fr",
     "password": "OhOh666"
 }, {
-    "id": 3,
-    "nom": "Sonsuper",
-    "prénom": "Alexis",
-    "email": "alexis.sonsuper@mailserver.fr",
+    "name": "Sonsuper",
+    "firstname": "Alexis",
+    "mail": "alexis.sonsuper@mailserver.fr",
     "password": "2fast4U"
 }]

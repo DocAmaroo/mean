@@ -1,13 +1,14 @@
-// const cartsRoute = require('./carts');
-// const categoriesRoute = require('./categories');
-// const membersRoute = require('./members');
-const productsRoute = require('./products');
+const express = require('express');
+const router = express.Router();
 
+const routesCarts = require('./carts');
+const routesCategories = require('./categories');
+const routesMembers = require('./members');
+const routesProducts = require('./products'); 
 
-module.exports = function(app, db) {
-    // Object.values(cartsRoute).forEach(f => f(app, db));
-    // categoriesRoute(app, db);
-    // Object.values(membersRoute).forEach(f => f(app, db));
-    // Object.values(productsRoute).forEach(f => f(app, db));
-    productsRoute(app, db);
-}
+router.use(routesCarts);
+router.use(routesCategories);
+router.use(routesMembers);
+router.use(routesProducts);
+
+module.exports = router;
