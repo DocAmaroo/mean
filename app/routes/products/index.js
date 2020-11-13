@@ -9,6 +9,6 @@ router.route('/categories')
 
 router.param('productId', productsController.checkProduct);
 router.route('/products/:productId')
-    .get(productsController.getProducts);
+    .get(productsController.getProduct);
 
 module.exports = router;
