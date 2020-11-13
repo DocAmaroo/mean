@@ -55,13 +55,14 @@ exports.getCategories = function (req, res) {
 /**
  * Check if a product exist
  */
-exports.checkProduct = function(req, res, productId) {
+exports.checkProduct = function(req, res, next, productId) {
     try {
         Products.findOne({_id:productId}, function (err, product) {
-            if(err) res.status(500).send(err);
+            if(err) return res.status(500).send(err);
             if(!product) return res.status(404).json({
-                response: 0,
-                message: "This product doesn't exist"
+                ok:false,
+                code:'404',
+                message:"This product doesn't exist"
             });
             req.product = product;
             return next();
@@ -70,7 +71,6 @@ exports.checkProduct = function(req, res, productId) {
         console.log("[-]Error on /categories: query didn't work properly\n" + e);
         res.json([]);
     }
-    return next();
 }
 
 /**
