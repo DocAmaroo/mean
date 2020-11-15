@@ -72,31 +72,3 @@ userSchema.methods.removeFromCart = function(productId) {
 
 const UserModels = mongoose.model('users', userSchema);
 module.exports = UserModels;
-
-
-
-
-
-
-
-
-
-// exports.getCartById = function(id, callback) {
-//     Carts.findById(id, function(err, cart) { 
-//         return callback(err, cart); 
-//     });
-// }
-
-// exports.getCartByMemberId = function(id, callback) {
-//     Carts.findOne({member_id:id}, function(err, cart){ 
-//         return callback(err, cart); 
-//     })
-// }
-
-
-// exports.addCart = function(data, callback) {
-//     const newCart = new Carts(data);
-//     newCart.save(function (err, cart) {
-//         return callback(err, cart);
-//     })
-// }
