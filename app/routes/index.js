@@ -1,11 +1,11 @@
 const router = require('express').Router();
 
 const routesCarts = require('./carts');
-const routesMembers = require('./members');
+const routesUsers = require('./users');
 const routesProducts = require('./products'); 
 
 router.use(routesCarts);
-router.use(routesMembers);
+router.use(routesUsers);
 router.use(routesProducts);
 
 module.exports = router;
