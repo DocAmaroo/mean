@@ -11,6 +11,31 @@ exports.getProducts = function (req, res) {
         });
 };
 
+/**
+ * Return all products name
+ */
+exports.getProductsName = function (req, res) {
+    let products = [];
+    try {
+        Product
+            .find({}, function(err, prod){
+                if (err) return res.status(500).send(err);
+                for(let p of prod){
+                    let name = p.name;
+                    if(!products.includes(name))
+                    products.push(name);
+                }
+                if(products.length == 0) return res.status(204).json([]);
+                return res.status(200).json(products);
+            });
+    }catch(e){
+        return res.status(400).json({
+            ok:false,
+            message:e
+        });
+    }
+};
+
 
 /**
  * Check if a product exist
@@ -54,24 +79,45 @@ exports.addProduct = function (req, res) {
 }
 
 /**
+ * Check if a categories exist
+ */
+exports.checkCategorie = function (req, res, next, categorie) {
+    try {
+        Product.findOne({type: categorie}, function (err, product) {
+            if (err) return res.status(500).send(err);
+            if (!product) return res.status(404).json({
+                ok: false,
+                code: '404',
+                message: "This categorie doesn't exist"
+            });
+            req.product = product;
+            return next();
+        })
+    } catch (e) {
+        return res.status(400).json({
+            ok: false,
+            message: e
+        });
+    }
+}
+
+/**
  * Return all products with specific categorie
  */
-// exports.getProductsByType = function (req, res) {
-//     let type = req.params.type;
-//     try {
-//         Products.find({
-//             type: type
-//         }).then(function(err, products) {
-//             if(err) return res.status(500).send(err);
-//             return res.status(200).json(products)
-//         });
-//     } catch (e) {
-//         return res.status(400).json({
-//             ok:false,
-//             message:e
-//         });
-//     }
-// };
+exports.getProductsByType = function (req, res) {
+    let type = req.params.type;
+    try {
+        Product.find({ type: type }, function(err, products) {
+            if(err) return res.status(500).send(err);
+            return res.status(200).json(products);
+        });
+    } catch (e) {
+        return res.status(400).json({
+            ok:false,
+            message:e
+        });
+    }
+};
 
 /**
  * Return all categories
