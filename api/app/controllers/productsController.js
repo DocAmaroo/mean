@@ -77,24 +77,24 @@ exports.addProduct = function (req, res) {
 /**
  * Return all categories
  */
-// exports.getCategories = function (req, res) {
-//     result = [];
-//     try {
-//         Products
-//             .find()
-//             .then(function(err, products) {
-//                 if(err) return res.status(500).send(err);
-//                 for (let product of products) {
-//                     if (!result.includes(product.type))
-//                         result.push(product.type);
-//                 }
-//                 if(result.length == 0) return res.status(204).json([]);
-//                 return res.status(200).json(result);
-//             });
-//     } catch (e) {
-//         return res.status(400).json({
-//             ok:false,
-//             message:e
-//         });
-//     }
-// };
+exports.getCategories = function (req, res) {
+    let categories = [];
+    try {
+        Product
+            .find()
+            .then(function(prod){
+                for(let p of prod){
+                    let type = p.type;
+                    if(!categories.includes(type))
+                        categories.push(type);
+                }
+                if(categories.length == 0) return res.status(204).json([]);
+                return res.status(200).json(categories);
+            });
+    }catch(e){
+        return res.status(400).json({
+            ok:false,
+            message:e
+        });
+    }
+};
