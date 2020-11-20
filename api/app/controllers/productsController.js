@@ -83,7 +83,7 @@ exports.addProduct = function (req, res) {
  */
 exports.checkCategorie = function (req, res, next, categorie) {
     try {
-        Product.findOne({type: categorie}, function (err, product) {
+        Product.find({type: categorie}, function (err, product) {
             if (err) return res.status(500).send(err);
             if (!product) return res.status(404).json({
                 ok: false,
@@ -100,24 +100,6 @@ exports.checkCategorie = function (req, res, next, categorie) {
         });
     }
 }
-
-/**
- * Return all products with specific categorie
- */
-exports.getProductsByType = function (req, res) {
-    let type = req.params.type;
-    try {
-        Product.find({ type: type }, function(err, products) {
-            if(err) return res.status(500).send(err);
-            return res.status(200).json(products);
-        });
-    } catch (e) {
-        return res.status(400).json({
-            ok:false,
-            message:e
-        });
-    }
-};
 
 /**
  * Return all categories
