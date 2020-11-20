@@ -5,7 +5,7 @@ const Product = require('../models/productsModels');
  */
 exports.getProducts = function (req, res) {
     Product
-        .find(function (err, products) {
+        .find({}, function (err, products) {
             if (err) return res.status(500).send(err);
             return res.status(200).json(products);
         });
@@ -80,7 +80,7 @@ exports.getCategories = function (req, res) {
     let categories = [];
     try {
         Product
-            .find(function(err, prod){
+            .find({}, function(err, prod){
                 if (err) return res.status(500).send(err);
                 for(let p of prod){
                     let type = p.type;
