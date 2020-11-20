@@ -16,10 +16,13 @@ const ProductSchema = new Schema({
     },
     marque: {
         type: String
+<<<<<<< HEAD
     },
     img: {
         type : String,
         default: "https://www.labaleine.fr/sites/default/files/image-not-found.jpg"
+=======
+>>>>>>> Thominou
     }
 });
 

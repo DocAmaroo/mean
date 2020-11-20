@@ -9,6 +9,10 @@ router.route('/categories')
 
 router.param('productId', productsController.checkProduct);
 router.route('/products/:productId')
+<<<<<<< HEAD
     .get(productsController.getProduct);
+=======
+    .get(productsController.getProducts);
+>>>>>>> Thominou
 
 module.exports = router;

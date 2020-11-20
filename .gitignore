@@ -37,4 +37,8 @@ Thumbs.db
 ###################
 .idea
 node_modules
+<<<<<<< HEAD
 .env
+=======
+.env
+>>>>>>> Thominou

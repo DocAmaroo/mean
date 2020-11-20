@@ -1,11 +1,19 @@
+<<<<<<< HEAD
 const Members = require('../models/membersModels');
+=======
+const membersModels = require('../models/membersModels');
+>>>>>>> Thominou
 
 /**
  * Handle member authentification
  */
 exports.checkMember = function (req, res) {
     try {
+<<<<<<< HEAD
         Members.find(req.body)
+=======
+        membersModels.find(req.body)
+>>>>>>> Thominou
             .then(function(members) {
                 if (members != undefined && members.length == 1) {
                     res.send({
@@ -27,6 +35,7 @@ exports.checkMember = function (req, res) {
         });
     }
 };
+<<<<<<< HEAD
 
 exports.createMember = function(req, res) {
     let tmp_mail = req.query.mail;
@@ -80,3 +89,5 @@ exports.getMembers = function(req, res) {
         res.json([]);
     }
 };
+=======
+>>>>>>> Thominou

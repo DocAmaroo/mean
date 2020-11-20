@@ -58,8 +58,13 @@ exports.getCategories = function (req, res) {
 exports.checkProduct = function(req, res, next, productId) {
     try {
         Products.findOne({_id:productId}, function (err, product) {
+<<<<<<< HEAD
             //if(err) return res.status(500).send(err);
             if(product == null) return res.status(404).json({
+=======
+            if(err) return res.status(500).send(err);
+            if(!product) return res.status(404).json({
+>>>>>>> Thominou
                 ok:false,
                 code:'404',
                 message:"This product doesn't exist"
@@ -73,7 +78,10 @@ exports.checkProduct = function(req, res, next, productId) {
     }
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> Thominou
 /**
  * Return a specific product
  */
