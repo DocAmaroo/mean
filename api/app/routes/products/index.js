@@ -9,7 +9,10 @@ router.route('/productsName')
     .get(productsController.getProductsName)
 
 router.route('/categories')
-    .get(productsController.getCategories);
+    .get(productsController.getCategories)
+
+router.route('/search')
+    .get(productsController.searchProduct)
 
 router.param('type', productsController.checkCategorie);
 router.route('/categories/:type')

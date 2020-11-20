@@ -143,3 +143,26 @@ exports.getCategories = function (req, res) {
         });
     }
 };
+
+/**
+ * Search Product with parameters
+ */
+exports.searchProduct = function (req, res){
+    let result = [];
+    try{
+        Product.find(req.query, function(err, prod){
+            if (err) return res.status(500).send(err);
+            for(let p of prod){
+                if(!result.includes(p))
+                    result.push(p);
+            }
+            if(result.length == 0) return res.status(204).json([]);
+            return res.status(200).json(result);  
+        });
+    }catch(e){
+        return res.status(400).json({
+            ok:false,
+            message:e
+        });
+    }
+};
