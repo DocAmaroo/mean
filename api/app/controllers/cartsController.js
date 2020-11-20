@@ -21,20 +21,3 @@ exports.removeFromCart = (req, res) => {
             res.status(201).json(cart);
         }).catch(err => res.status(500).send(err));
 }
-
-
-// exports.getCart = function (req, res) {
-//     Carts.getCartById(req.body.member_id, function (err, cart) {
-//         if (err) return res.status(500).send(err);
-//         if (!cart) return res.status(404).json(err404());
-//         res.status(201).json(cart);
-//     })
-// }
-
-// exports.getCartByMemberId = function (req, res) {
-//     Carts.getCartByMemberId(req.query.member_id, function (err, cart) {
-//         if (err) return res.status(500).send(err);
-//         if (!cart) return res.status(404).json(err404())
-//         return res.status(201).json(cart);
-//     });
-// };
