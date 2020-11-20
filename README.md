@@ -13,9 +13,6 @@ npm install -g @angular/cli@latest
 npm install nodemon express mongoose body-parser cors
 ```
 
-## On /front
-
-
 # Lancement du serveur NodeJS
 ```bash
 npm run dev
