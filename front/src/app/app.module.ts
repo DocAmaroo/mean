@@ -11,7 +11,7 @@ import { CategoriesComponent } from './categories/categories.component';
   declarations: [
     AppComponent,
     ProductsComponent,
-    CategoriesComponent
+    CategoriesComponent,
   ],
   imports: [
     BrowserModule,

@@ -6,7 +6,10 @@ import { CategoriesComponent } from './categories/categories.component';
 const routes: Routes = [
   {path: '', component: ProductsComponent}, //home serait mieux
   {path: 'products', component: ProductsComponent},
-  {path: 'categories', component: CategoriesComponent}
+  {path: 'products/:categorie', component: ProductsComponent},
+  {path: 'categories', component: CategoriesComponent},
+  {path: 'login', component: CategoriesComponent}
+
 ];
 
 @NgModule({
