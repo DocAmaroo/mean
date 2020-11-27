@@ -16,7 +16,7 @@ app.use(function (req, res, next) {
 
     //[TEMP] mock user
     const User = require('./app/models/usersModels');
-    User.findById('5fb787d702aaa1127e9f4c9a')
+    User.findById('5fb16dcffdfe8c64afc8f37b')
         .then(user => {
             req.user = user;
             next();
