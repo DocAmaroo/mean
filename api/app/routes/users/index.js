@@ -2,8 +2,10 @@ const router = require('express').Router();
 const UsersController = require('../../controllers/usersController');
 
 
-router.route('/login')
-    .get(UsersController.signin)
+router.route('/users/signin')
+    .post(UsersController.signin);
+
+router.route('/users/signup')
     .post(UsersController.signup);
 
 module.exports = router;

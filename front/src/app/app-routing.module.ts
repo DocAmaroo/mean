@@ -2,14 +2,16 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProductsComponent } from './products/products.component';
 import { CategoriesComponent } from './categories/categories.component';
+import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
-  {path: '', component: ProductsComponent}, //home serait mieux
+  {path: '', component: ProductsComponent},
   {path: 'products', component: ProductsComponent},
   {path: 'products/:categorie', component: ProductsComponent},
   {path: 'categories', component: CategoriesComponent},
-  {path: 'login', component: CategoriesComponent}
-
+  {path: 'users', component: UsersComponent},
+  {path: 'users/signin', component: UsersComponent},
+  {path: 'users/signup', component: UsersComponent},
 ];
 
 @NgModule({
