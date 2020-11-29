@@ -33,7 +33,7 @@ DB_CONNECTION=mongodb://localhost:27017/SUPERVENTES
 ./creationBase.sh
 ``` 
 
-# Start the server
+# Start NodeJS Server
 ```bash
 sudo systemctl start mongod
 npm run dev
