@@ -7,8 +7,7 @@ exports.signin = function (req, res, next) {
     User.find(req.body)
         .then(function (user) {
             if (user != undefined && user.length == 1) {
-                res.status(200).json(user);
-                req.user = user;
+                res.status(200).json(user[0]);
                 return next();
             }
             res.status(401).json({

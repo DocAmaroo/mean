@@ -1,45 +1,45 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { UsersService } from '../services/users.service';
+import {Component, OnInit} from '@angular/core';
+import {FormGroup, FormControl, Validators} from '@angular/forms';
+import {UsersService} from '../services/users.service';
 
 @Component({
-	selector: 'app-users',
-	templateUrl: './users.component.html',
-	styleUrls: ['./users.component.css']
+  selector: 'app-users',
+  templateUrl: './users.component.html',
+  styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
+  public onSigning: boolean;
 
-	public onSignin: Boolean;
-	
-	form = new FormGroup({
-		firstname: new FormControl('Thomas', Validators.required),
-		name: new FormControl('Canta', Validators.required),
-		mail: new FormControl('test@gmail.com', Validators.required),
-		password: new FormControl('123', Validators.required),
-	});
+  form = new FormGroup({
+    firstname: new FormControl('Thomas', Validators.required),
+    name: new FormControl('Canta', Validators.required),
+    mail: new FormControl('test@gmail.com', Validators.required),
+    password: new FormControl('123', Validators.required),
+  });
 
-	constructor(private _usersService: UsersService) { }
+  constructor(private usersService: UsersService) {
+  }
 
-	ngOnInit(): void {
-		this.onSignin = false;
-	}
+  ngOnInit(): void {
+    this.onSigning = true;
+  }
 
-	onSubmit() {
-		if(this.onSignin) {
-			this._usersService.register(this.form.value).subscribe( (response:any) => {
-				this._usersService.setUser(response._id);
-				console.log("Vous avez été enregistrée ! Vous êtes connecté");
-			});
-		} else {
-			let auth = {"mail":this.form.value.mail, "password":this.form.value.password};
-			this._usersService.connect(auth).subscribe( (response:any) => {
-				this._usersService.setUser(response._id);
-				console.log("Vous êtes connecté");
-			})
-		}
-	}
+  onSubmit(): void {
+    if (this.onSigning) {
+      const auth = {mail: this.form.value.mail, password: this.form.value.password};
+      this.usersService.signin(auth).subscribe((response: any) => {
+        this.usersService.setUser(response);
+        console.log('Vous êtes connecté');
+      });
+    } else {
+      this.usersService.signup(this.form.value).subscribe((response: any) => {
+        this.usersService.setUser(response);
+        console.log('Vous avez été enregistré ! Vous êtes connecté');
+      });
+    }
+  }
 
-	toggleType() {
-		this.onSignin = !this.onSignin;
-	}
+  toggleType(): void {
+    this.onSigning = !this.onSigning;
+  }
 }

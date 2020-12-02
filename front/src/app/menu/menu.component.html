@@ -15,15 +15,7 @@
         <a class="nav-link" routerLink="/categories"> Categories </a>
       </li>
     </ul>
-    <a class="nav-link active" routerLink="/users/signin">Se connecter</a>
-    <!-- <div class="btn-group">
-      <button type="button" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <img src="../assets/public/user.svg" alt="user logo" width="30">
-      </button>
-      <div class="dropdown-menu dropdown-menu-right">
-        <button class="dropdown-item" type="button">Profil</button>
-        <button class="dropdown-item" type="button">Paniers</button>
-      </div>
-    </div> -->
+    <button class="btn btn-danger" (click)="disconnect()" *ngIf="user|async">{{username|async}}</button>
+    <a class="nav-link active" routerLink="/users/signin" *ngIf="!(user|async)">Se connecter</a>
   </div>
 </nav>

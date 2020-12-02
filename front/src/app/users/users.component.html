@@ -1,6 +1,6 @@
 <div class="container">
   <form class="w-50 p-2 mx-auto" [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div class="form-row" *ngIf="onSignin">
+    <div class="form-row" *ngIf="!onSigning">
       <div class="col">
         <label for="inputFirstName">First name</label>
         <input type="text" class="form-control" id="inputFirstName" name="firstname" formControlName="firstname">
@@ -20,11 +20,11 @@
         <input type="password" class="form-control" id="inputPassword" name="password" formControlName="password" required>
       </div>
     </div>
-    <button type="submit" class="btn btn-primary" *ngIf="!onSignin">Se connecter</button>
-    <button type="submit" class="btn btn-primary" *ngIf="onSignin">S'enregistrer</button>
+    <button type="submit" class="btn btn-primary" *ngIf="onSigning">Se connecter</button>
+    <button type="submit" class="btn btn-primary" *ngIf="!onSigning">S'enregistrer</button>
   </form>
   <div class="list-group container w-50 p-2 mx-auto">
-    <button class="link" *ngIf="!onSignin" (click)="toggleType()"> Voulez-vous vous enregistrer ? S'enregistrer </button>
-    <button class="link" *ngIf="onSignin" (click)="toggleType()"> Déjà inscrit ? Se connecter </button>
+    <button class="link" *ngIf="onSigning" (click)="toggleType()"> Voulez-vous vous enregistrer ? S'enregistrer </button>
+    <button class="link" *ngIf="!onSigning" (click)="toggleType()"> Déjà inscrit ? Se connecter </button>
   </div>
 </div>

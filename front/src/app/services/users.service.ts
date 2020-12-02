@@ -1,38 +1,58 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Subject, BehaviorSubject, Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Subject, BehaviorSubject, Observable} from 'rxjs';
+import {UserModel} from '../model/user.model';
 
 const httpOptions = {
-	headers: new HttpHeaders({
-		"Access-Control-Allow-Methods":"GET,POST",
-		"Access-Control-Allow-Headers":"Content-type",
-		"Access-Control-Allow-Origin":"*",
-		"Content-Type":"application/json"
-	})
-}
+  headers: new HttpHeaders({
+    'Access-Control-Allow-Methods': 'GET,POST',
+    'Access-Control-Allow-Headers': 'Content-type',
+    'Access-Control-Allow-Origin': '*',
+    'Content-Type': 'application/json'
+  })
+};
+
 @Injectable({
-	providedIn: 'root'
+  providedIn: 'root'
 })
 export class UsersService {
+  private user: Subject<UserModel> = new BehaviorSubject<UserModel>(undefined);
+  private username: Subject<string> = new BehaviorSubject<string>(undefined);
+  private url = 'http://localhost:8888/';
 
-	private user: Subject<String> = new BehaviorSubject<String>(undefined);
-	private url: String = 'http://localhost:8888/';
-	
-	constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private router: Router) {
+  }
 
-	getUser() {
-		return this.user;
-	}
+  getUser(): any {
+    return this.user;
+  }
 
-	setUser(data: String) {
-		this.user.next(data);
-	}
+  getUsername(): any {
+    return this.username;
+  }
 
-	connect(id) {
-		return this.http.post(this.url + 'users/signin', JSON.stringify(id), httpOptions);
-	}
+  setUser(user: UserModel): any {
+    this.user.next(user);
+    this.user.subscribe( response => {
+      if (response != null) {
+        this.username.next(response.firstname);
+      }
+    });
+    this.router.navigate(['/categories']);
+  }
 
-	register(id): Observable<any> {
-		return this.http.post(this.url + 'users/signup', JSON.stringify(id), httpOptions);
-	}
+  signin(id): Observable<UserModel> {
+    return this.http.post<UserModel>(this.url + 'users/signin', JSON.stringify(id), httpOptions);
+  }
+
+  signup(id): Observable<UserModel> {
+    return this.http.post<UserModel>(this.url + 'users/signup', JSON.stringify(id), httpOptions);
+  }
+
+  disconnect(): void {
+    this.user.next(null);
+    this.username.next(null);
+  }
 }

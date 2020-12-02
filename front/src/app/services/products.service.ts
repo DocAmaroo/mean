@@ -7,14 +7,14 @@ import { Observable } from 'rxjs';
 })
 export class ProductsService {
 
-  private url: String = 'http://localhost:8888/';
+  private url = 'http://localhost:8888/';
 
   constructor(private http: HttpClient) { }
 
   getProduct(id): Observable<any> {
     return this.http.get(this.url + 'products/' + id);
   }
-  
+
   getProducts(): Observable<any> {
     return this.http.get(this.url + 'products');
   }
