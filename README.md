@@ -33,8 +33,28 @@ DB_CONNECTION=mongodb://localhost:27017/SUPERVENTES
 ./creationBase.sh
 ``` 
 
+# Angular.json
+Add this line on Angular.json
+```json5
+//...
+"styles": [
+      "src/styles.css",
+      "node_modules/bootstrap/dist/css/bootstrap.min.css",
+      "node_modules/@fortawesome/fontawesome-free/css/all.css"
+    ],
+    "scripts": [
+      "node_modules/jquery/dist/jquery.min.js",
+      "node_modules/bootstrap/dist/js/bootstrap.min.js"
+    ]
+//...
+```
 # Start NodeJS Server
 ```bash
 sudo systemctl start mongod
 npm run dev
+```
+
+# Start Angular
+```bash
+npm serve -o
 ```
