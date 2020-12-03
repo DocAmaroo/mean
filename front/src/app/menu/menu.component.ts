@@ -25,6 +25,14 @@ export class MenuComponent implements OnInit {
     this.router.navigate(['/categories']);
   }
 
+  showCart(): void {
+    this.user.subscribe(response => {
+      if (response != null) {
+        this.router.navigate(['/carts/', response._id]);
+      }
+    });
+  }
+
   disconnect(): void {
     this.usersService.disconnect();
     this.router.navigate(['/categories']);

@@ -15,7 +15,7 @@
         <a class="nav-link" routerLink="/categories"> Categories </a>
       </li>
     </ul>
-    <button class="btn btn-warning" *ngIf="user|async"><i class="fa fa-shopping-cart"></i></button>
+    <a class="btn btn-warning" (click)="showCart()" *ngIf="user|async"><i class="fa fa-shopping-cart"></i></a>
     <button class="btn btn-danger" (click)="disconnect()" *ngIf="user|async">{{username|async}}</button>
     <a class="nav-link active" routerLink="/users/signin" *ngIf="!(user|async)">Se connecter</a>
   </div>

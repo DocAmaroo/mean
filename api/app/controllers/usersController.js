@@ -5,9 +5,10 @@ const User = require('../models/usersModels');
  */
 exports.signin = function (req, res, next) {
     User.find(req.body)
-        .then(function (user) {
-            if (user != undefined && user.length == 1) {
-                res.status(200).json(user[0]);
+        .then(function (result) {
+            if (result != undefined && result.length == 1) {
+                req.user = result[0]._id;
+                res.status(200).json(result[0]);
                 return next();
             }
             res.status(401).json({
@@ -26,6 +27,7 @@ exports.signup = (req, res, next) => {
         })
         .save()
         .then(result => {
+            req.user = result._id;
             res.status(201).json(result);
         }).catch(err => console.log(err));
 }

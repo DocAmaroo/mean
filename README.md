@@ -10,7 +10,7 @@ npm i --save express mongodb mongoose body-parser cors
 
 ## On /mean/front
 ```bash
-npm i jquery bootstrap @fortawesome/fontawesome-free
+npm i --save jquery bootstrap @fortawesome/fontawesome-free
 ```
 
 # Install MongoDB
