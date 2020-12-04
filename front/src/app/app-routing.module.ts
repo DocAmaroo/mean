@@ -10,7 +10,6 @@ const routes: Routes = [
   {path: 'products', component: ProductsComponent},
   {path: 'products/:categorie', component: ProductsComponent},
   {path: 'categories', component: CategoriesComponent},
-  {path: 'users', component: UsersComponent},
   {path: 'users/signin', component: UsersComponent},
   {path: 'users/signup', component: UsersComponent},
   {path: 'carts/:id', component: CartsComponent}

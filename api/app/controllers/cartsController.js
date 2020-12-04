@@ -23,7 +23,7 @@ exports.checkUser = (req, res, next, userID) => {
 }
 
 exports.getCart = (req, res) => {
-    return res.status(200).json(req.user);
+    return res.status(200).json(req.user.cart);
 }
 
 exports.addToCart = (req, res) => {

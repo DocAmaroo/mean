@@ -1,4 +1,6 @@
+import {ProductModel} from "./product.model";
+
 export interface ItemModel {
-  productId: string;
   qty: number;
+  product: ProductModel;
 }

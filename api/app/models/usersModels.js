@@ -55,7 +55,9 @@ userSchema.methods.addToCart = async function(productId) {
 
         cart.totalPrice += product.price;
 
-        return this.save();
+        this.save();
+
+        return this.cart;
     }
 
 };
@@ -72,7 +74,9 @@ userSchema.methods.removeFromCart = async function(productId) {
 
             cart.totalPrice -= product.price;
 
-            return this.save();
+            this.save();
+
+            return this.cart;
         }
     }
 }

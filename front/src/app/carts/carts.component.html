@@ -7,10 +7,12 @@
     <img class="card-img-top" src="../../assets/public/user.svg" alt="product logo">
     <div class="card-body">
       <h5 class="card-title">{{ item.name }}</h5>
-      <h6>{{ item.price }}€</h6>
+      <h6>Prix: {{ item.price }}€</h6>
+      <h6>Quantité: {{ item.qty }}</h6>
+      <button class="btn btn-warning" (click)="addToCart(item._id)">Ajouter</button>
     </div>
   </div>
 </div>
 
-<p>Prix total: {{cart.totalPrice}}</p>
+<h1 *ngIf="isEmpty">Prix total: {{cart.totalPrice}}€</h1>
 
