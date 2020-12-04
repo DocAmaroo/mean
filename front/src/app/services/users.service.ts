@@ -18,7 +18,6 @@ const httpOptions = {
 })
 export class UsersService {
   private user: Subject<UserModel> = new BehaviorSubject<UserModel>(undefined);
-  private username: Subject<string> = new BehaviorSubject<string>(undefined);
   private url = 'http://localhost:8888/';
 
   constructor(private http: HttpClient,
@@ -29,17 +28,8 @@ export class UsersService {
     return this.user;
   }
 
-  getUsername(): any {
-    return this.username;
-  }
-
   setUser(user: UserModel): any {
     this.user.next(user);
-    this.user.subscribe( response => {
-      if (response != null) {
-        this.username.next(response.firstname);
-      }
-    });
     this.router.navigate(['/categories']);
   }
 
@@ -53,6 +43,5 @@ export class UsersService {
 
   disconnect(): void {
     this.user.next(null);
-    this.username.next(null);
   }
 }

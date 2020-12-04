@@ -14,4 +14,8 @@ export class CartsService {
   getCart(id) {
     return this.http.get(this.url + 'carts/' + id);
   }
+
+  addToCart(product) {
+
+  }
 }

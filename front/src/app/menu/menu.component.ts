@@ -12,17 +12,23 @@ import {UserModel} from '../model/user.model';
 export class MenuComponent implements OnInit {
 
   public user: Observable<UserModel>;
-  public username: Observable<string>;
+  public username: string;
 
   constructor(private usersService: UsersService,
               private router: Router) {
 
     this.user = this.usersService.getUser();
-    this.username = this.usersService.getUsername();
   }
 
   ngOnInit(): void {
     this.router.navigate(['/categories']);
+    if (this.user !== undefined) {
+      this.user.subscribe( response => {
+        if (response != null) {
+          this.username = response.firstname;
+        }
+      });
+    }
   }
 
   showCart(): void {

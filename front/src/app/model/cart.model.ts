@@ -4,3 +4,4 @@ export interface CartModel {
   items: Array<ItemModel>;
   totalPrice: number;
 }
+

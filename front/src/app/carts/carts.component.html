@@ -1,7 +1,16 @@
-<!--<p *ngIf="isEmpty">Ton panier est vide, va acheter vite chenapan !</p>-->
+<h1>Votre panier</h1>
 
-<!--<ul *ngIf="user|async">-->
-<!--  <li *ngFor="let item of cart.items">{{item.qty}}</li>-->
-<!--</ul>-->
+<p *ngIf="isEmpty">Ton panier est vide, va acheter vite chenapan !</p>
 
+<div class="products-content" *ngIf="(user|async) && !isEmpty">
+  <div class="card product" style="width: 18rem;" *ngFor="let item of cart.items">
+    <img class="card-img-top" src="../../assets/public/user.svg" alt="product logo">
+    <div class="card-body">
+      <h5 class="card-title">{{ item.name }}</h5>
+      <h6>{{ item.price }}€</h6>
+    </div>
+  </div>
+</div>
+
+<p>Prix total: {{cart.totalPrice}}</p>
 

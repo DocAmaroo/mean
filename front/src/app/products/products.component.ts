@@ -18,7 +18,7 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.category = this.route.snapshot.paramMap.get('categorie');
-    if (this.category !== undefined) {
+    if (this.category !== null) {
       this.productsService.getProductsByCategories(this.category).subscribe((response: any) => {
         this.products = response;
       });
