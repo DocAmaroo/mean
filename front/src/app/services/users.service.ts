@@ -18,6 +18,8 @@ const httpOptions = {
 })
 export class UsersService {
   private user: Subject<UserModel> = new BehaviorSubject<UserModel>(undefined);
+  public user$ = this.user.asObservable();
+
   private url = 'http://localhost:8888/';
 
   constructor(private http: HttpClient,
@@ -25,7 +27,7 @@ export class UsersService {
   }
 
   getUser(): any {
-    return this.user;
+    return this.user$;
   }
 
   setUser(user: UserModel): any {

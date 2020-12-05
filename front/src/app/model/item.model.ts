@@ -1,6 +1,6 @@
-import {ProductModel} from "./product.model";
+import {ProductModel} from './product.model';
 
-export interface ItemModel {
+export interface ItemModel extends ProductModel {
+  product: undefined | string;
   qty: number;
-  product: ProductModel;
 }

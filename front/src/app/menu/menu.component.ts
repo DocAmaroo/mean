@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {UsersService} from '../services/users.service';
 import {Observable} from 'rxjs';
+import {UsersService} from '../services/users.service';
+import {CartsService} from '../services/carts.service';
 import {UserModel} from '../model/user.model';
 
 @Component({
@@ -15,6 +16,7 @@ export class MenuComponent implements OnInit {
   public username: string;
 
   constructor(private usersService: UsersService,
+              private cartsService: CartsService,
               private router: Router) {
 
     this.user = this.usersService.getUser();
@@ -32,11 +34,7 @@ export class MenuComponent implements OnInit {
   }
 
   showCart(): void {
-    this.user.subscribe(response => {
-      if (response != null) {
-        this.router.navigate(['/carts/', response._id]);
-      }
-    });
+    this.cartsService.showCart();
   }
 
   disconnect(): void {
