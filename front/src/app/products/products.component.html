@@ -1,4 +1,10 @@
-<h1> Liste des produits </h1>
-<ul>
-    <li *ngFor="let product of products"> {{ product.name }} </li>
-</ul>
+<h1 class="container-fluid"> Liste des produits <span *ngIf="category != undefined"> par {{ category }} </span> </h1>
+<div class="products-content">
+    <div class="card product" style="width: 18rem;" *ngFor="let product of products">
+    <img class="card-img-top w-50" src="../../assets/public/user.svg" alt="product logo">
+    <div class="card-body">
+        <h5 class="card-title">{{ product.name }}</h5>
+        <h6>{{ product.price }}€</h6>
+        <a class="btn btn-warning">Ajouter au panier</a>
+    </div>
+</div>

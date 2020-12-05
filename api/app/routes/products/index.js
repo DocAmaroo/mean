@@ -16,7 +16,7 @@ router.route('/products/:type')
     .get(productsController.getProduct);
 
 router.param('productId', productsController.checkProduct);
-router.route('/products/:productId')
+router.route('/products/product/:productId')
     .get(productsController.getProduct)
 
 module.exports = router;

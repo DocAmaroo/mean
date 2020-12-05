@@ -7,9 +7,13 @@ import { Observable } from 'rxjs';
 })
 export class ProductsService {
 
-  private url: String = 'http://localhost:8888/';
+  private url = 'http://localhost:8888/';
 
   constructor(private http: HttpClient) { }
+
+  getProduct(id): any {
+    return this.http.get(this.url + 'products/product/' + id);
+  }
 
   getProducts(): Observable<any> {
     return this.http.get(this.url + 'products');
@@ -20,7 +24,6 @@ export class ProductsService {
   }
 
   getProductsByCategories(categorie): Observable<any> {
-    return this.http.get(this.url + 'products/'+categorie);
+    return this.http.get(this.url + 'products/' + categorie);
   }
-
 }

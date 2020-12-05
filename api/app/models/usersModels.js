@@ -43,30 +43,41 @@ const userSchema = new Schema({
 userSchema.methods.addToCart = async function(productId) {
     const product = await Products.findById(productId);
 
-    if (product) {
+    if (product !== undefined) {
         const cart = this.cart;
 
         const index = cart.items.findIndex(obj => obj.productId.equals(productId))
-        if (index >= 0) cart.items[index].qty += 1;
+        if (index >= 0) cart.items[index].qty++;
         else cart.items.push({ productId: product._id, qty: 1 });
 
         if (!cart.totalPrice)
             cart.totalPrice = 0;
 
         cart.totalPrice += product.price;
-        
-        console.log(cart);
-        return this.save();
+
+        this.save();
+
+        return this.cart;
     }
 
 };
 
-userSchema.methods.removeFromCart = function(productId) {
+userSchema.methods.removeFromCart = async function(productId) {
+    const product = await Products.findById(productId);
     const cart = this.cart;
     const index = cart.items.findIndex(obj => obj.productId.equals(productId))
-    if (index >= 0) {
-        cart.items.splice(index, 1);
-        return this.save();
+
+    if (product !== undefined) {
+        if (index >= 0) {
+            if (cart.items[index].qty > 1) cart.items[index].qty--;
+            else cart.items.splice(index, 1);
+
+            cart.totalPrice -= product.price;
+
+            this.save();
+
+            return this.cart;
+        }
     }
 }
 

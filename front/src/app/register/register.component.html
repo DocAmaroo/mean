@@ -1,0 +1,19 @@
+<form (ngSubmit)="onSubmit()" #inscription="ngForm" method="POST">
+    <label> Name </label>
+    <input type="text" class="form-control" required [(ngModel)]="utilisateur['name']" name="name" />
+
+    <label> Firstname </label>
+    <input type="text" class="form-control" required [(ngModel)]="utilisateur['firstname']" name="firstname" />
+
+    <label> Email </label>
+    <input type="text" class="form-control" required [(ngModel)]="utilisateur['email']" name="email" />
+
+    <label> Mot de passe </label>
+    <input type="password" class="form-control" required [(ngModel)]="utilisateur['password']" name="password" />
+
+    <input type="submit" value="Register"/>
+</form>
+
+<a routerLink="/connexion"> Login </a>
+
+<router-outlet></router-outlet>
