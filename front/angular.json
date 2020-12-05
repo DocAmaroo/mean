@@ -92,6 +92,7 @@
               "src/assets"
             ],
             "styles": [
+<<<<<<< HEAD
               "src/styles.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.css"
@@ -100,6 +101,11 @@
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
+=======
+              "src/styles.css"
+            ],
+            "scripts": []
+>>>>>>> origin/Thominou
           }
         },
         "lint": {

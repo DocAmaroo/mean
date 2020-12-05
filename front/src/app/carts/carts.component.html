@@ -1,6 +1,10 @@
 <h1>Votre panier</h1>
 
+<<<<<<< HEAD
 <p *ngIf="isEmpty">Ton panier est vide, va acheter vite chenapan !</p>
+=======
+<p *ngIf="cart.items.length === 0">Ton panier est vide, va acheter vite chenapan !</p>
+>>>>>>> origin/Thominou
 
 <div class="products-content" *ngIf="(user|async) && !isEmpty">
   <div class="card product" style="width: 18rem;" *ngFor="let item of cart.items">
@@ -14,5 +18,9 @@
   </div>
 </div>
 
+<<<<<<< HEAD
 <h1 *ngIf="isEmpty">Prix total: {{cart.totalPrice}}€</h1>
+=======
+<h1 *ngIf="cart.items.length === 0">Prix total: {{totalPrice}}€</h1>
+>>>>>>> origin/Thominou
 
