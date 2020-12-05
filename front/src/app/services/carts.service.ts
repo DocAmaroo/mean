@@ -1,15 +1,8 @@
-<<<<<<< HEAD
-import { Injectable } from '@angular/core';
-import {Router} from '@angular/router';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Subject, BehaviorSubject, Observable} from 'rxjs';
-=======
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Subject, BehaviorSubject, Observable} from 'rxjs';
 import {UsersService} from './users.service';
->>>>>>> origin/Thominou
 
 
 const httpOptions = {
@@ -29,23 +22,14 @@ export class CartsService {
   private url = 'http://localhost:8888/';
 
   constructor(private http: HttpClient,
-<<<<<<< HEAD
-              private router: Router) {
-=======
               private router: Router,
               private usersService: UsersService) {
->>>>>>> origin/Thominou
   }
 
   getCart(id): Observable<any> {
     return this.http.get(this.url + 'carts/' + id);
   }
 
-<<<<<<< HEAD
-  addToCart(id, productID): any {
-    return this.http.post(this.url + 'carts/' + id, JSON.stringify(productID), httpOptions);
-  }
-=======
   addToCart(id, productID): Observable<any> {
     return this.http.post(this.url + 'carts/' + id, JSON.stringify(productID), httpOptions);
   }
@@ -57,5 +41,4 @@ export class CartsService {
       }
     });
   }
->>>>>>> origin/Thominou
 }

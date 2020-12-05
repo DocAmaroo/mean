@@ -24,11 +24,7 @@ const userSchema = new Schema({
     },
     cart: {
         items: [{
-<<<<<<< HEAD
-            productId: {
-=======
             product: {
->>>>>>> origin/Thominou
                 type: mongoose.Types.ObjectId,
                 ref: 'Products',
                 required: true
@@ -50,27 +46,14 @@ userSchema.methods.addToCart = async function(productId) {
     if (product !== undefined) {
         const cart = this.cart;
 
-<<<<<<< HEAD
-        const index = cart.items.findIndex(obj => obj.productId.equals(productId))
-        if (index >= 0) cart.items[index].qty++;
-        else cart.items.push({ productId: product._id, qty: 1 });
-=======
         const index = cart.items.findIndex(obj => obj.product.equals(productId))
         if (index >= 0) cart.items[index].qty++;
         else cart.items.push({ product: product._id, qty: 1 });
->>>>>>> origin/Thominou
 
         if (!cart.totalPrice)
             cart.totalPrice = 0;
 
-<<<<<<< HEAD
-        cart.totalPrice += product.price;
-
         this.save();
-
-=======
-        this.save();
->>>>>>> origin/Thominou
         return this.cart;
     }
 
@@ -79,25 +62,14 @@ userSchema.methods.addToCart = async function(productId) {
 userSchema.methods.removeFromCart = async function(productId) {
     const product = await Products.findById(productId);
     const cart = this.cart;
-<<<<<<< HEAD
-    const index = cart.items.findIndex(obj => obj.productId.equals(productId))
-=======
     const index = cart.items.findIndex(obj => obj.product.equals(productId))
->>>>>>> origin/Thominou
 
     if (product !== undefined) {
         if (index >= 0) {
             if (cart.items[index].qty > 1) cart.items[index].qty--;
             else cart.items.splice(index, 1);
 
-<<<<<<< HEAD
-            cart.totalPrice -= product.price;
-
             this.save();
-
-=======
-            this.save();
->>>>>>> origin/Thominou
             return this.cart;
         }
     }

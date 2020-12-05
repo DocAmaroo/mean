@@ -1,13 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-<<<<<<< HEAD
-import {UsersService} from '../services/users.service';
-import {Observable} from 'rxjs';
-=======
 import {Observable} from 'rxjs';
 import {UsersService} from '../services/users.service';
 import {CartsService} from '../services/carts.service';
->>>>>>> origin/Thominou
 import {UserModel} from '../model/user.model';
 
 @Component({
@@ -21,10 +16,7 @@ export class MenuComponent implements OnInit {
   public username: string;
 
   constructor(private usersService: UsersService,
-<<<<<<< HEAD
-=======
               private cartsService: CartsService,
->>>>>>> origin/Thominou
               private router: Router) {
 
     this.user = this.usersService.getUser();
@@ -42,15 +34,7 @@ export class MenuComponent implements OnInit {
   }
 
   showCart(): void {
-<<<<<<< HEAD
-    this.user.subscribe(response => {
-      if (response != null) {
-        this.router.navigate(['/carts/', response._id]);
-      }
-    });
-=======
     this.cartsService.showCart();
->>>>>>> origin/Thominou
   }
 
   disconnect(): void {

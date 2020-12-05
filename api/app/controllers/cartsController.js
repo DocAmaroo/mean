@@ -1,16 +1,8 @@
 const User = require('../models/usersModels');
 
-<<<<<<< HEAD
-exports.checkUser = (req, res, next, userID) => {
-    try {
-        User.findOne({
-            _id: userID
-        }, function (err, user) {
-=======
 exports.checkUser = (req, res, next, userid) => {
     try {
         User.findOne({ _id: userid }, function (err, user) {
->>>>>>> origin/Thominou
             if (err) return res.status(500).send(err);
             if (!user) return res.status(404).json({
                 ok: false,

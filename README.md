@@ -5,11 +5,7 @@ npm i -g nodemon @angular/cli@latest
 
 ## On /mean/api
 ```bash
-<<<<<<< HEAD
-npm i --save express mongodb mongoose body-parser cors
-=======
 npm i --save express mongodb mongoose body-parser cors dotenv
->>>>>>> origin/Thominou
 ```
 
 ## On /mean/front
@@ -60,9 +56,5 @@ npm run dev
 
 # Start Angular
 ```bash
-<<<<<<< HEAD
-npm serve -o
-=======
 ng serve -o
->>>>>>> origin/Thominou
 ```
