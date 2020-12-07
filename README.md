@@ -10,7 +10,7 @@ npm i --save express mongodb mongoose body-parser cors dotenv
 
 ## On /mean/front
 ```bash
-npm i --save jquery bootstrap @fortawesome/fontawesome-free
+npm i --save jquery bootstrap popper.js @fortawesome/fontawesome-free
 ```
 
 # Install MongoDB
@@ -34,16 +34,17 @@ DB_CONNECTION=mongodb://localhost:27017/SUPERVENTES
 ``` 
 
 # Angular.json
-Add this line on Angular.json
+Add this lines on angular.json
 ```json5
 //...
-"styles": [
+    "styles": [
       "src/styles.css",
       "node_modules/bootstrap/dist/css/bootstrap.min.css",
       "node_modules/@fortawesome/fontawesome-free/css/all.css"
     ],
     "scripts": [
       "node_modules/jquery/dist/jquery.min.js",
+      "node_modules/popper.js/dist/umd/popper.js",
       "node_modules/bootstrap/dist/js/bootstrap.min.js"
     ]
 //...

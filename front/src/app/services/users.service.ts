@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Subject, BehaviorSubject, Observable} from 'rxjs';
 import {UserModel} from '../model/user.model';
+import {CartModel} from '../model/cart.model';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -17,6 +18,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UsersService {
+
   private user: Subject<UserModel> = new BehaviorSubject<UserModel>(undefined);
   public user$ = this.user.asObservable();
 
@@ -26,7 +28,7 @@ export class UsersService {
               private router: Router) {
   }
 
-  getUser(): any {
+  getUser(): Observable<UserModel> {
     return this.user$;
   }
 
@@ -34,6 +36,7 @@ export class UsersService {
     this.user.next(user);
     this.router.navigate(['/categories']);
   }
+
 
   signin(id): Observable<UserModel> {
     return this.http.post<UserModel>(this.url + 'users/signin', JSON.stringify(id), httpOptions);

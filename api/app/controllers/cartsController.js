@@ -2,7 +2,7 @@ const User = require('../models/usersModels');
 
 exports.checkUser = (req, res, next, userid) => {
     try {
-        User.findOne({ _id: userid }, function (err, user) {
+        User.findOne({_id: userid}, function (err, user) {
             if (err) return res.status(500).send(err);
             if (!user) return res.status(404).json({
                 ok: false,
@@ -26,14 +26,20 @@ exports.getCart = (req, res) => {
 
 exports.addToCart = (req, res) => {
     req.user.addToCart(req.body.product_id)
-        .then( cart => {
-            res.status(201).json(cart);
+        .then(isOk => {
+            if (isOk)
+                res.status(201).json({ok: true, message: "item added"});
+            else
+                res.status(404).json({ok: false, code: "404", message: "couldn't add product"});
         }).catch(err => res.status(500).send(err));
 }
 
 exports.removeFromCart = (req, res) => {
     req.user.removeFromCart(req.body.product_id)
-        .then( cart => {
-            res.status(201).json(cart);
+        .then(isOk => {
+            if (isOk)
+                res.status(201).json({ok: true, message: "item removed"});
+            else
+                res.status(404).json({ok: false, code: "404", message: "couldn't remove product"});
         }).catch(err => res.status(500).send(err));
 }

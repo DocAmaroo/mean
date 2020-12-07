@@ -34,8 +34,7 @@ const userSchema = new Schema({
                 default: 0,
                 required: true
             }
-        }],
-        totalPrice: Number
+        }]
     }
 });
 
@@ -50,13 +49,11 @@ userSchema.methods.addToCart = async function(productId) {
         if (index >= 0) cart.items[index].qty++;
         else cart.items.push({ product: product._id, qty: 1 });
 
-        if (!cart.totalPrice)
-            cart.totalPrice = 0;
-
         this.save();
-        return this.cart;
+        return true;
     }
 
+    return false;
 };
 
 userSchema.methods.removeFromCart = async function(productId) {
@@ -70,9 +67,11 @@ userSchema.methods.removeFromCart = async function(productId) {
             else cart.items.splice(index, 1);
 
             this.save();
-            return this.cart;
+            return true;
         }
     }
+
+    return false;
 }
 
 const UserModels = mongoose.model('users', userSchema);

@@ -90,10 +90,11 @@ exports.getCategories = function (req, res) {
                 if (err) return res.status(500).send(err);
                 for (let p of prod) {
                     let type = p.type;
-                    if (!categories.includes(type))
+                    if (!categories.includes(type)) {
                         categories.push(type);
+                    }
                 }
-                if (categories.length == 0) return res.status(204).json([]);
+                if (categories.length === 0) return res.status(204).json([]);
                 return res.status(200).json(categories);
             });
     } catch (e) {
