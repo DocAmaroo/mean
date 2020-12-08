@@ -85,4 +85,15 @@ export class CartsComponent implements OnInit {
       });
     });
   }
+
+  emptiedCart(): any {
+    this.user.subscribe((user: UserModel) => {
+      this.cartsService.emptiedCart(user._id).subscribe((response: any) => {
+        if (response.ok) {
+          this.cart.items = [];
+          this.totalPrice = 0;
+        }
+      });
+    });
+  }
 }

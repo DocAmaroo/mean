@@ -7,4 +7,8 @@ router.route('/carts/:userID')
     .put(cartsController.addToCart)
     .post(cartsController.removeFromCart);
 
+router.param('userID', cartsController.checkUser);
+router.route('/carts/remove/:userID')
+    .get(cartsController.emptiedCart);
+
 module.exports = router;

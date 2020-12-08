@@ -11,8 +11,8 @@ router.route('/categories')
 router.route('/search')
     .get(productsController.searchProduct)
 
-router.param('type', productsController.checkCategorie)
-router.route('/products/:type')
+router.param('categorie', productsController.checkCategorie)
+router.route('/products/:categorie')
     .get(productsController.getProduct);
 
 router.param('productId', productsController.checkProduct);

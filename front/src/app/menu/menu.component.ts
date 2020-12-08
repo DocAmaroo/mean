@@ -25,7 +25,7 @@ export class MenuComponent implements OnInit {
   ngOnInit(): void {
     this.router.navigate(['/categories']);
     if (this.user !== undefined) {
-      this.user.subscribe( response => {
+      this.user.subscribe(response => {
         if (response != null) {
           this.username = response.firstname;
         }

@@ -15,5 +15,5 @@
   </div>
 </div>
 
-<h1 *ngIf="totalPrice !== 0">Prix total: {{totalPrice}}€</h1>
-
+<h3 *ngIf="totalPrice !== 0">Prix total: {{totalPrice}}€</h3>
+<button class="btn btn-primary" (click)="emptiedCart()">Valider le panier</button>

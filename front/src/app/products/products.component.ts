@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {ProductsService} from '../services/products.service';
 import {UsersService} from '../services/users.service';
@@ -16,7 +17,18 @@ import {CartModel} from '../model/cart.model';
 export class ProductsComponent implements OnInit {
 
   public user$: Observable<UserModel>;
-  public products: Array<ProductModel>;
+  public cart$: Observable<CartModel>;
+  public products: Array<ProductModel> = [];
+
+  public isFilter: boolean;
+
+  form = new FormGroup({
+    name: new FormControl(''),
+    categorie: new FormControl(''),
+    price: new FormControl(''),
+    marque: new FormControl('')
+  });
+
   public category: string;
 
   constructor(private productsService: ProductsService,
@@ -24,6 +36,7 @@ export class ProductsComponent implements OnInit {
               private cartsService: CartsService,
               private route: ActivatedRoute) {
     this.user$ = this.usersService.getUser();
+    this.cart$ = this.cartsService.getCart();
   }
 
   ngOnInit(): void {
@@ -33,7 +46,7 @@ export class ProductsComponent implements OnInit {
         this.products = response;
       });
     } else {
-      this.productsService.getProducts().subscribe((response: any) => {
+      this.productsService.getProducts('').subscribe((response: any) => {
         this.products = response;
       });
     }
@@ -41,7 +54,13 @@ export class ProductsComponent implements OnInit {
 
   addToCart(productID): any {
     this.user$.subscribe((user: UserModel) => {
-      this.cartsService.addToCart(user._id, productID);
+      this.cartsService.addToCart(user._id, productID).subscribe((response: any) => {
+        if (response.ok) {
+          this.cartsService.getUserCart(user._id).subscribe((cart: CartModel) => {
+            this.cartsService.setCart(cart);
+          });
+        }
+      });
     });
   }
 
@@ -87,5 +106,40 @@ export class ProductsComponent implements OnInit {
 
   sortByDecAlpha(): Array<ProductModel> {
     return this.products.sort(this.compByDecAlpha);
+  }
+
+  onSubmit(): any {
+    let res = '';
+    const entries = Object.entries(this.form.value);
+    let cpt = 0;
+    let asFoundOne = 0;
+
+    for (const entry of entries) {
+      if (entry[1] !== '') {
+        asFoundOne = 1;
+        if (cpt !== 0) {
+          res += '&';
+        }
+        res += entry[0] + '=' + entry[1];
+        cpt++;
+      }
+    }
+    if (asFoundOne) {
+      this.toggleFilterBtn();
+      this.productsService.getProducts('?' + res).subscribe((products: Array<ProductModel>) => {
+        this.products = products;
+      });
+    }
+  }
+
+  resetFilter(): any {
+    this.productsService.getProducts('').subscribe((products: Array<ProductModel>) => {
+      this.toggleFilterBtn();
+      this.products = products;
+    });
+  }
+
+  toggleFilterBtn(): void {
+    this.isFilter = !this.isFilter;
   }
 }

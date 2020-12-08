@@ -5,7 +5,7 @@ const Product = require('../models/productsModels');
  */
 exports.getProducts = function (req, res) {
     Product
-        .find({}, function (err, products) {
+        .find(req.query, function (err, products) {
             if (err) return res.status(500).send(err);
             return res.status(200).json(products);
         });
@@ -83,20 +83,19 @@ exports.checkCategorie = function (req, res, next, categorie) {
  * Return all categories
  */
 exports.getCategories = function (req, res) {
-    let categories = [];
+    let products = [];
     try {
-        Product
-            .find({}, function (err, prod) {
-                if (err) return res.status(500).send(err);
-                for (let p of prod) {
-                    let type = p.type;
-                    if (!categories.includes(type)) {
-                        categories.push(type);
-                    }
+        Product.find({}, function (err, items) {
+            if (err) return res.status(500).send(err);
+            for (let item of items) {
+                let type = item.categorie;
+                if (!products.includes(type)) {
+                    products.push(type);
                 }
-                if (categories.length === 0) return res.status(204).json([]);
-                return res.status(200).json(categories);
-            });
+            }
+            if (products.length === 0) return res.status(204).json([]);
+            return res.status(200).json(products);
+        });
     } catch (e) {
         return res.status(400).json({
             ok: false,
@@ -109,10 +108,10 @@ exports.getCategories = function (req, res) {
  * Return all products with specific categorie
  */
 exports.getProductsByType = function (req, res) {
-    let type = req.params.type;
+    let type = req.params.categorie;
     try {
         Product
-            .find({type: type}, function (err, products) {
+            .find({categorie: categorie}, function (err, products) {
                 if (err) return res.status(500).send(err);
                 return res.status(200).json(products);
             });
@@ -127,22 +126,22 @@ exports.getProductsByType = function (req, res) {
 /**
  * Search Product with parameters
  */
-exports.searchProduct = function (req, res){
+exports.searchProduct = function (req, res) {
     let result = [];
-    try{
-        Product.find(req.query, function(err, prod){
+    try {
+        Product.find(req.query, function (err, prod) {
             if (err) return res.status(500).send(err);
-            for(let p of prod){
-                if(!result.includes(p))
+            for (let p of prod) {
+                if (!result.includes(p))
                     result.push(p);
             }
-            if(result.length == 0) return res.status(204).json([]);
-            return res.status(200).json(result);  
+            if (result.length === 0) return res.status(204).json([]);
+            return res.status(200).json(result);
         });
-    }catch(e){
+    } catch (e) {
         return res.status(400).json({
-            ok:false,
-            message:e
+            ok: false,
+            message: e
         });
     }
 };

@@ -72,7 +72,8 @@ userSchema.methods.removeFromCart = async function(productId) {
     }
 
     return false;
-}
+};
+
 
 const UserModels = mongoose.model('users', userSchema);
 module.exports = UserModels;

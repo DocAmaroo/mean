@@ -1,5 +1,5 @@
 <div class="container-fluid d-flex justify-content-between">
-  <h1 class="container-fluid"> Liste des produits <span *ngIf="category != undefined"> par {{ category }} </span> </h1>
+  <h1 class="container-fluid"> Liste des produits <span *ngIf="category != undefined"> par {{ category }} </span></h1>
   <div class="btn-group">
     <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Trier par...
@@ -13,16 +13,31 @@
   </div>
 </div>
 
+<div>
+  <form class="d-flex" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <input class="form-control me-2" type="text" placeholder="nom" aria-lable="name" formControlName="name">
+    <input class="form-control me-2" type="text" placeholder="categorie" aria-lable="categorie"
+           formControlName="categorie">
+    <input class="form-control me-2" type="text" placeholder="prix" aria-lable="price" formControlName="price">
+    <input class="form-control me-2" type="text" placeholder="marque" aria-lable="marque" formControlName="marque">
+    <button class="btn btn-outline-success" type="submit" *ngIf="!isFilter">Search</button>
+    <button class="btn btn-outline-info" type="button" (click)="resetFilter()" *ngIf="isFilter">Reset</button>
+  </form>
+</div>
 
-
-<div class="products-content">
-    <div class="card product" style="width: 18rem;" *ngFor="let product of products">
+<div class="products-content" *ngIf="products.length > 0">
+  <div class="card product" style="width: 18rem;" *ngFor="let product of products">
     <img class="card-img-top w-50" src="../../assets/public/user.svg" alt="product logo">
     <div class="card-body">
-        <h5 class="card-title">{{ product.name }}</h5>
-        <h6>{{ product.price }}€</h6>
-        <h6>{{ product.marque }}</h6>
-        <h6>{{ product.type }}</h6>
-        <a class="btn btn-warning" (click)="addToCart(product._id)">Ajouter au panier</a>
+      <h5 class="card-title">{{ product.name }}</h5>
+      <h6>{{ product.price }}€</h6>
+      <h6>{{ product.marque }}</h6>
+      <h6>{{ product.categorie }}</h6>
+      <a class="btn btn-warning" *ngIf="(user$ | async)" (click)="addToCart(product._id)">Ajouter au panier</a>
     </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="products.length === 0">
+  <h1> Aucun élement ne correspond à votre recherche </h1>
 </div>

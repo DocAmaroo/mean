@@ -7,7 +7,7 @@ const ProductSchema = new Schema({
         type: String,
         required: [true, 'Name field is required']
     },
-    type: {
+    categorie: {
         type: String
     },
     price: {

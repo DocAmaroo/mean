@@ -43,3 +43,10 @@ exports.removeFromCart = (req, res) => {
                 res.status(404).json({ok: false, code: "404", message: "couldn't remove product"});
         }).catch(err => res.status(500).send(err));
 }
+
+exports.emptiedCart = (req, res) => {
+    req.user.cart.items = [];
+    req.user.save();
+
+    res.status(201).json({ok: true, message: "Cart has been emptied"});
+}

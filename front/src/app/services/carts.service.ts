@@ -44,12 +44,12 @@ export class CartsService {
     this.cart.next(cart);
   }
 
-  addToCart(userID, productID): any {
-    return this.http.put(this.url + 'carts/' + userID, JSON.stringify({product_id: productID}), httpOptions);
+  addToCart(userid, productID): any {
+    return this.http.put(this.url + 'carts/' + userid, JSON.stringify({product_id: productID}), httpOptions);
   }
 
-  removeToCart(id, productID): any{
-    return this.http.post(this.url + 'carts/' + id, JSON.stringify(productID), httpOptions);
+  removeToCart(userid, productID): any{
+    return this.http.post(this.url + 'carts/' + userid, JSON.stringify(productID), httpOptions);
   }
 
   showCart(): any {
@@ -58,5 +58,9 @@ export class CartsService {
         this.router.navigate(['/carts/', response._id]);
       }
     });
+  }
+
+  emptiedCart(userid): any {
+    return this.http.get(this.url + 'carts/remove/' + userid);
   }
 }
