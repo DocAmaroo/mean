@@ -1,0 +1,19 @@
+<h1>Votre panier</h1>
+
+<p *ngIf="totalPrice === 0">Ton panier est vide, va acheter vite chenapan !</p>
+
+<div class="products-content" *ngIf="(user|async) && !isEmpty">
+  <div class="card product" style="width: 18rem;" *ngFor="let item of cart.items">
+    <img class="card-img-top" src="../../assets/public/user.svg" alt="product logo">
+    <div class="card-body">
+      <h5 class="card-title">{{ item.name }}</h5>
+      <h6>Prix: {{ item.price }}€</h6>
+      <h6>Quantité: {{ item.qty }}</h6>
+      <button class="btn btn-primary" (click)="addToCart(item.product)">+</button>
+      <button class="btn btn-danger" (click)="removeToCart(item.product)">-</button>
+    </div>
+  </div>
+</div>
+
+<h3 *ngIf="totalPrice !== 0">Prix total: {{totalPrice}}€</h3>
+<button class="btn btn-primary" (click)="emptiedCart()">Valider le panier</button>

@@ -1,0 +1,4 @@
+<h1> Liste des catégories</h1>
+<div *ngFor="let categorie of categories">
+    <a class="btn btn-primary" [routerLink]="['/products/', categorie]"> {{ categorie }}</a>
+</div>

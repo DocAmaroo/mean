@@ -1,0 +1,22 @@
+<!-- Toolbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+  <a class="navbar-brand" routerLink="/"> Superventes </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/products"> Products </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/categories"> Categories </a>
+      </li>
+    </ul>
+    <a class="btn btn-warning" (click)="showCart()" *ngIf="user|async"><i class="fa fa-shopping-cart"></i></a>
+    <button class="btn btn-danger" (click)="disconnect()" *ngIf="user|async">{{username}}</button>
+    <a class="nav-link active" routerLink="/users/signin" *ngIf="!(user|async)">Se connecter</a>
+  </div>
+</nav>

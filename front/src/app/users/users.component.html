@@ -1,0 +1,30 @@
+<div class="container">
+  <form class="w-50 p-2 mx-auto" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-row" *ngIf="!onSigning">
+      <div class="col">
+        <label for="inputFirstName">First name</label>
+        <input type="text" class="form-control" id="inputFirstName" name="firstname" formControlName="firstname">
+      </div>
+      <div class="col">
+        <label for="inputLastName">Last name</label>
+        <input type="text" class="form-control" id="inputLastName" name="name" formControlName="name">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputEmail">Email</label>
+        <input type="email" class="form-control" id="inputEmail" placeholder="example@gmail.com" name="mail" formControlName="mail" required>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputPassword">Password</label>
+        <input type="password" class="form-control" id="inputPassword" name="password" formControlName="password" required>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" *ngIf="onSigning">Se connecter</button>
+    <button type="submit" class="btn btn-primary" *ngIf="!onSigning">S'enregistrer</button>
+  </form>
+  <div class="list-group container w-50 p-2 mx-auto">
+    <button class="link" *ngIf="onSigning" (click)="toggleType()"> Voulez-vous vous enregistrer ? S'enregistrer </button>
+    <button class="link" *ngIf="!onSigning" (click)="toggleType()"> Déjà inscrit ? Se connecter </button>
+  </div>
+</div>
