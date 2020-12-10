@@ -60,7 +60,7 @@ exports.addProduct = function (req, res) {
  */
 exports.checkCategorie = function (req, res, next, categorie) {
     try {
-        Product.find({type: categorie}, function (err, product) {
+        Product.find({categorie: categorie}, function (err, product) {
             if (err) return res.status(500).send(err);
             if (!product) return res.status(404).json({
                 ok: false,
