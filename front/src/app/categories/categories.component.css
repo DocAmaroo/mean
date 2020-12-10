@@ -1,0 +1,11 @@
+table {
+  width: 100%;
+}
+
+table tr {
+  background-color: rgba(245,245,245, 0.7);
+}
+
+tr:nth-child(even) {
+  background-color: white !important;
+}

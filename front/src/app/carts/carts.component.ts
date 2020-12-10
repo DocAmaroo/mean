@@ -26,6 +26,7 @@ export class CartsComponent implements OnInit {
     this.user = this.usersService.getUser();
   }
 
+
   ngOnInit(): void {
     this.user.subscribe((user: UserModel) => {
       this.cartsService.getUserCart(user._id).subscribe((cart: CartModel) => {

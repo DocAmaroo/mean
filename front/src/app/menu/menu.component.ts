@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {UsersService} from '../services/users.service';
 import {CartsService} from '../services/carts.service';
 import {UserModel} from '../model/user.model';
+import {CartModel} from '../model/cart.model';
 
 @Component({
   selector: 'app-menu',
@@ -14,6 +15,7 @@ export class MenuComponent implements OnInit {
 
   public user: Observable<UserModel>;
   public username: string;
+  public cart$: Observable<CartModel>;
 
   constructor(private usersService: UsersService,
               private cartsService: CartsService,
