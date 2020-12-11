@@ -34,7 +34,7 @@ export class UsersService {
 
   setUser(user: UserModel): any {
     this.user.next(user);
-    this.router.navigate(['/categories']);
+    this.router.navigate(['/products']);
   }
 
 

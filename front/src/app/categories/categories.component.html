@@ -1,7 +1,6 @@
-<h1> Liste des catégories</h1>
-
-<div class="container">
-  <table>
+<div class="container products-wrap">
+  <p class="title"> Liste des catégories </p>
+  <table class="table table-striped">
     <tr *ngFor="let categorie of categories">
       <td>
         <a class="nav-item nav-link" [routerLink]="['/products/', categorie]"> {{ categorie }}</a>

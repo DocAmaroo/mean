@@ -8,8 +8,9 @@ router.route('/products')
 router.route('/categories')
     .get(productsController.getCategories);
 
-router.route('/search')
-    .get(productsController.searchProduct)
+router.route('/marques')
+    .get(productsController.getMarques);
+
 
 router.param('categorie', productsController.checkCategorie)
 router.route('/products/:categorie')

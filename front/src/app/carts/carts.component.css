@@ -10,3 +10,17 @@
   margin: 1%;
   padding: 2%;
 }
+
+table {
+  width: 96%;
+  animation: all ease-in;
+}
+
+thead {
+  font-size: 20px;
+}
+
+tfoot {
+  font-weight: bold;
+  font-size: 20px;
+}

@@ -1,7 +1,14 @@
 [
-    {"name":"Caféine", "categorie":"anti-fatigue", "price":15, "marque":"marque1"},
-    {"name":"Curcumine", "categorie":"anti-oxydant", "price":30, "marque":"marque1"},
-    {"name":"Quercétine", "categorie":"anti-oxydant", "price":50, "marque":"marque2"},
-    {"name":"Resvératrol", "categorie":"anti-oxydant", "price":45, "marque":"marque2"},
-    {"name":"Rhodiola rosea", "categorie":"anti-fatigue", "price":25, "marque":"marque2"}
+    {"name":"Caféine", "categorie":"Boisson", "description":"Un café torifié pour les plus grands informaticiens de ce monde", "price":1.50, "marque":"Carte Blanche"},
+    {"name":"Poivre", "categorie":"Epice", "description":"Gaffe ça pitique !", "price":2.00, "marque":"Dugros"},
+    {"name":"Macbouc", "categorie":"Informatique", "description":"Un PC de compétition", "price":1199.99, "marque":"Pear"},
+    {"name":"Enceinte Bluetooth", "categorie":"Appareil connectée", "description":"ET SA FAIT BIM BAM BOUMMM", "price":99.99, "marque":"Sceauniz"},
+    {"name":"Sel", "categorie":"Epice", "description":"Pas bon pour la tension, mais sur une bonne viande mamamiya", "price":2.00, "marque":"Sardoche"},
+    {"name":"Bat l'avoine", "categorie":"Musique", "description":"Gaffe à vous ça fait des céréales", "price":9.99, "marque":"PasSiOuf"},
+    {"name":"Hachikō", "categorie":"Peluche", "description":"Le plus beau chien du monde", "price":19.99, "marque":"JapFamilly"},
+    {"name":"Lave vaisselle", "categorie":"Dieu mythique", "description":"Juste la déesse ultime", "price":500.26, "marque":"Bosse"},
+    {"name":"Tablette tactile", "categorie":"Informatique", "description":"C'est sympa, mais moins bien qu'un pc portable", "price":400.50, "marque":"Microhard"},
+    {"name":"Titanicsastepbrother", "categorie":"DVD", "description":"A ne pas regarder en famille !", "price":29.99, "marque":"Marc Dorcel"},
+    {"name":"Reno", "categorie":"Musique", "description":"TOUJOURS VIVANTS !!", "price":15.00, "marque":"Activision"},
+    {"name":"Pepe The Frog", "categorie":"Peluche", "description":"Meme interplanétaire", "price":19.99, "marque":"Reddit"}
 ]

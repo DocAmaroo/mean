@@ -5,17 +5,24 @@ const Schema = mongoose.Schema;
 const ProductSchema = new Schema({
     name: {
         type: String,
+        index: true,
         required: [true, 'Name field is required']
     },
     categorie: {
         type: String
     },
+    description: {
+        type: String,
+        index: true
+    },
     price: {
         type: Number,
+        index: true,
         default: 0.00
     },
     marque: {
-        type: String
+        type: String,
+        index: true
     },
     img: {
         type : String,

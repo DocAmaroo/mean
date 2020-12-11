@@ -9,6 +9,7 @@ import {UserModel} from '../model/user.model';
 import {ProductModel} from '../model/product.model';
 import {CartModel} from '../model/cart.model';
 
+
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -16,26 +17,30 @@ import {CartModel} from '../model/cart.model';
 })
 export class ProductsComponent implements OnInit {
 
-  public user$: Observable<UserModel>;
+  public user: Observable<UserModel>;
   public cart$: Observable<CartModel>;
   public products: Array<ProductModel> = [];
 
   public isFilter: boolean;
 
   form = new FormGroup({
-    name: new FormControl(''),
-    categorie: new FormControl(''),
-    price: new FormControl(''),
-    marque: new FormControl('')
+    name: new FormControl(null),
+    categorie: new FormControl(null),
+    minPrice: new FormControl(null),
+    maxPrice: new FormControl(null),
+    marque: new FormControl(null)
   });
 
+  public categories: Array<string>;
   public category: string;
+  public marques: Array<string>;
+
 
   constructor(private productsService: ProductsService,
               private usersService: UsersService,
               private cartsService: CartsService,
               private route: ActivatedRoute) {
-    this.user$ = this.usersService.getUser();
+    this.user = this.usersService.getUser();
     this.cart$ = this.cartsService.getCart();
   }
 
@@ -50,10 +55,16 @@ export class ProductsComponent implements OnInit {
         this.products = response;
       });
     }
+    this.productsService.getCategories().subscribe((response: any) => {
+      this.categories = response;
+    });
+    this.productsService.getMarques().subscribe((response: any) => {
+      this.marques = response;
+    });
   }
 
   addToCart(productID): any {
-    this.user$.subscribe((user: UserModel) => {
+    this.usersService.user$.subscribe((user: UserModel) => {
       this.cartsService.addToCart(user._id, productID).subscribe((response: any) => {
         if (response.ok) {
           this.cartsService.getUserCart(user._id).subscribe((cart: CartModel) => {
@@ -109,13 +120,14 @@ export class ProductsComponent implements OnInit {
   }
 
   onSubmit(): any {
+    console.log(this.form.value);
     let res = '';
     const entries = Object.entries(this.form.value);
     let cpt = 0;
     let asFoundOne = 0;
 
     for (const entry of entries) {
-      if (entry[1] !== '') {
+      if (entry[1] !== null) {
         asFoundOne = 1;
         if (cpt !== 0) {
           res += '&';
@@ -137,6 +149,8 @@ export class ProductsComponent implements OnInit {
       this.toggleFilterBtn();
       this.products = products;
     });
+    this.form.reset();
+    this.productsService.redirectToProducts();
   }
 
   toggleFilterBtn(): void {

@@ -5,6 +5,7 @@ import {Subject, BehaviorSubject, Observable} from 'rxjs';
 import {UsersService} from './users.service';
 import {ProductsService} from './products.service';
 import {CartModel} from '../model/cart.model';
+import {UserModel} from "../model/user.model";
 
 
 const httpOptions = {
@@ -23,6 +24,7 @@ export class CartsService {
 
   private cart: Subject<CartModel> = new BehaviorSubject<CartModel>(undefined);
   public cart$ = this.cart.asObservable();
+  public user$: Observable<UserModel>;
 
   private url = 'http://localhost:8888/';
 
@@ -30,6 +32,7 @@ export class CartsService {
               private router: Router,
               private productsService: ProductsService,
               private usersService: UsersService) {
+    this.user$ = this.usersService.getUser();
   }
 
   getCart(): Observable<CartModel> {
@@ -49,7 +52,7 @@ export class CartsService {
     return this.http.put(this.url + 'carts/' + userid, JSON.stringify({product_id: productID}), httpOptions);
   }
 
-  removeToCart(userid, productID): any{
+  removeToCart(userid, productID): any {
     return this.http.post(this.url + 'carts/' + userid, JSON.stringify(productID), httpOptions);
   }
 

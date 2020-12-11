@@ -18,7 +18,6 @@ export class CartsComponent implements OnInit {
   public user: Observable<UserModel>;
   public cart: CartModel = {items: []};
   public totalPrice = 0;
-  public isEmpty: boolean;
 
   constructor(private cartsService: CartsService,
               private usersService: UsersService,
@@ -28,7 +27,7 @@ export class CartsComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.user.subscribe((user: UserModel) => {
+    this.usersService.user$.subscribe((user: UserModel) => {
       this.cartsService.getUserCart(user._id).subscribe((cart: CartModel) => {
         this.cartsService.setCart(cart);
         this.initCart(cart);
@@ -48,7 +47,7 @@ export class CartsComponent implements OnInit {
   }
 
   addToCart(productID): any {
-    this.user.subscribe((user: UserModel) => {
+    this.usersService.user$.subscribe((user: UserModel) => {
       this.cartsService.addToCart(user._id, productID).subscribe((res: any) => {
         if (res.ok) {
           const i = this.cart.items.findIndex(obj => obj.product === productID);
@@ -69,7 +68,7 @@ export class CartsComponent implements OnInit {
   }
 
   removeToCart(productID): any {
-    this.user.subscribe((user: UserModel) => {
+    this.usersService.user$.subscribe((user: UserModel) => {
       this.cartsService.removeToCart(user._id, {product_id: productID}).subscribe((res: any) => {
         if (res.ok) {
           const i = this.cart.items.findIndex(obj => obj.product === productID);
@@ -88,7 +87,7 @@ export class CartsComponent implements OnInit {
   }
 
   emptiedCart(): any {
-    this.user.subscribe((user: UserModel) => {
+    this.usersService.user$.subscribe((user: UserModel) => {
       this.cartsService.emptiedCart(user._id).subscribe((response: any) => {
         if (response.ok) {
           this.cart.items = [];

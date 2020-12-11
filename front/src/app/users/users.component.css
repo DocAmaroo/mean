@@ -1,6 +1,11 @@
 .link {
-    border: none;
-    background: none;
-    color: steelblue;
-    outline: none;
+  border: none;
+  background: none;
+  color: steelblue;
+  outline: none;
+}
+
+.errMsg {
+  color: red;
+  font-size: 15px;
 }

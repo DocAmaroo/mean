@@ -4,13 +4,45 @@ const Product = require('../models/productsModels');
  * Return all products
  */
 exports.getProducts = function (req, res) {
-    Product
-        .find(req.query, function (err, products) {
+
+    let priceRange;
+    let queries = Object.assign({}, req.query);
+    minPrice = req.query.minPrice;
+    maxPrice = req.query.maxPrice;
+
+    delete queries.minPrice;
+    delete queries.maxPrice;
+
+
+    if (minPrice === undefined && maxPrice === undefined) {
+        priceRange = {};
+    } else if (minPrice !== undefined && maxPrice === undefined) {
+        priceRange = {price: {$gte: minPrice}};
+    } else if (req.query.minPrice === undefined && maxPrice !== undefined) {
+        priceRange = {price: {$lte: maxPrice}};
+    } else {
+        priceRange = {
+            $and: [
+                {price: {$gte: minPrice}},
+                {price: {$lte: maxPrice}}
+            ]
+        }
+    }
+
+    Product.find({ $and: [queries, priceRange]}, function (err, products) {
             if (err) return res.status(500).send(err);
             return res.status(200).json(products);
         });
 };
 
+
+// exports.getProducts = function (req, res) {
+//     Product
+//         .find(req.query, function (err, products) {
+//             if (err) return res.status(500).send(err);
+//             return res.status(200).json(products);
+//         });
+// };
 
 /**
  * Check if a product exist
@@ -123,19 +155,21 @@ exports.getProductsByType = function (req, res) {
     }
 };
 
+
 /**
- * Search Product with parameters
+ * get all marques
  */
-exports.searchProduct = function (req, res) {
+exports.getMarques = function (req, res) {
     let result = [];
     try {
-        Product.find(req.query, function (err, prod) {
+        Product
+        .find({}, function (err, prod) {
             if (err) return res.status(500).send(err);
             for (let p of prod) {
-                if (!result.includes(p))
-                    result.push(p);
+                if (!result.includes(p.marque))
+                    result.push(p.marque);
             }
-            if (result.length === 0) return res.status(204).json([]);
+            if (result.length === 0) return res.status(204).json(result);
             return res.status(200).json(result);
         });
     } catch (e) {

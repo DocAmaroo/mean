@@ -1,39 +1,58 @@
-<div class="container-fluid d-flex justify-content-between">
-  <h1 class="container-fluid"> Liste des produits <span *ngIf="category != undefined"> par {{ category }} </span></h1>
-  <div class="btn-group">
-    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Trier par...
-    </button>
-    <div class="dropdown-menu dropdown-menu-right">
-      <button class="dropdown-item" type="button" (click)="sortByIncPrice()">prix croissant</button>
-      <button class="dropdown-item" type="button" (click)="sortByDecPrice()">prix décroissant</button>
-      <button class="dropdown-item" type="button" (click)="sortByIncAlpha()">ordre croissant</button>
-      <button class="dropdown-item" type="button" (click)="sortByDecAlpha()">ordre décroissant</button>
+<p class="title"> Liste des produits </p>
+
+<div class="d-flex justify-content-between">
+  <div>
+    <div class="btn-group">
+      <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+        Trier par...
+      </button>
+      <div class="dropdown-menu dropdown-menu-right">
+        <button class="dropdown-item" type="button" (click)="sortByIncPrice()">prix croissant</button>
+        <button class="dropdown-item" type="button" (click)="sortByDecPrice()">prix décroissant</button>
+        <button class="dropdown-item" type="button" (click)="sortByIncAlpha()">ordre croissant</button>
+        <button class="dropdown-item" type="button" (click)="sortByDecAlpha()">ordre décroissant</button>
+      </div>
+    </div>
+
+    <div class="filter">
+      <form class="d-flex" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <input class="form-control me-2" type="text" placeholder="nom" aria-lable="name" formControlName="name">
+        <label class="input-group-text" for="categories">Categorie</label>
+        <select class="form-select" id="categories" formControlName="categorie">
+          <option value="" disabled selected hidden>Filtrer par catégorie</option>
+          <option *ngFor="let categorie of categories" [value]="categorie">{{categorie}}</option>
+        </select>
+        <input id="min" class="form-control me-2" type="number" min="0" placeholder="prix min" aria-lable="minPrice" formControlName="minPrice">
+        <input id="max" class="form-control me-2" type="number" min="0" placeholder="prix max" aria-lable="maxPrice" formControlName="maxPrice">
+        <label class="input-group-text" for="marques">Marques</label>
+        <select class="form-select" id="marques" formControlName="marque">
+          <option value="" disabled selected hidden>Filtrer par marques</option>
+          <option *ngFor="let marque of marques" [value]="marque">{{marque}}</option>
+        </select>
+        <button class="btn btn-outline-success" type="submit" *ngIf="!isFilter">Search</button>
+        <button class="btn btn-outline-info" type="button" (click)="resetFilter()" *ngIf="isFilter">Reset</button>
+      </form>
     </div>
   </div>
 </div>
 
-<div>
-  <form class="d-flex" [formGroup]="form" (ngSubmit)="onSubmit()">
-    <input class="form-control me-2" type="text" placeholder="nom" aria-lable="name" formControlName="name">
-    <input class="form-control me-2" type="text" placeholder="categorie" aria-lable="categorie"
-           formControlName="categorie">
-    <input class="form-control me-2" type="text" placeholder="prix" aria-lable="price" formControlName="price">
-    <input class="form-control me-2" type="text" placeholder="marque" aria-lable="marque" formControlName="marque">
-    <button class="btn btn-outline-success" type="submit" *ngIf="!isFilter">Search</button>
-    <button class="btn btn-outline-info" type="button" (click)="resetFilter()" *ngIf="isFilter">Reset</button>
-  </form>
-</div>
 
 <div class="products-content" *ngIf="products.length > 0">
   <div class="card product" style="width: 18rem;" *ngFor="let product of products">
-    <img class="card-img-top w-50" src="../../assets/public/user.svg" alt="product logo">
+    <img class="card-img-top w-100"
+         src="https://fsmedia.imgix.net/75/38/9d/93/923c/42c7/9523/4fdfbc812c57/science-of-earworms-explain-why-never-gonna-give-you-up-is-stuck-in-our-heads-30-years-later.png"
+         alt="product logo">
+
     <div class="card-body">
+      <span class="badge badge-secondary float-right categorie">{{product.categorie}}</span>
       <h5 class="card-title">{{ product.name }}</h5>
-      <h6>{{ product.price }}€</h6>
       <h6>{{ product.marque }}</h6>
-      <h6>{{ product.categorie }}</h6>
-      <a class="btn btn-warning" *ngIf="(user$ | async)" (click)="addToCart(product._id)">Ajouter au panier</a>
+      <hr class="dropdown-divider">
+      <h6>{{ product.description }}</h6>
+      <button class="btn btn-success float-right" (click)="addToCart(product._id)" *ngIf="(user|async)"><i
+        class="fa fa-shopping-cart"></i> {{ product.price }}€
+      </button>
     </div>
   </div>
 </div>
